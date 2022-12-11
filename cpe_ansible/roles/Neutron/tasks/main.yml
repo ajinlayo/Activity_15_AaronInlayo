@@ -1,0 +1,19 @@
+- name: Install Neutron
+  apt:
+    name: neutron-openvswitch-agent
+    state: latest
+
+- name: Install nova-compute
+  apt:
+    name: nova-compute
+    state: latest
+
+- name: Restart Neutron
+  ansible.builtin.service:
+   name: neutron-openvswitch-agent
+   state: restarted
+
+- name: Restart nova-compute
+  ansible.builtin.service:
+   name: nova-compute
+   state: restarted

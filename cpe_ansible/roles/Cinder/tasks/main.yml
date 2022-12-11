@@ -1,0 +1,26 @@
+- name: Install cinder-api
+  apt:
+    name: cinder-api
+    state: latest
+    update_cache: yes
+
+- name: Install cinder-scheduler
+  apt:
+    name: cinder-scheduler
+    state: latest
+    update_cache: yes
+
+- name: Restart nova-api
+  ansible.builtin.service:
+   name: nova-api
+   state: restarted
+
+- name: Restart cinder-scheduler
+  ansible.builtin.service:
+   name: cinder-scheduler
+   state: restarted
+
+- name: Restart apache2
+  ansible.builtin.service:
+   name: apache2
+   state: restarted
